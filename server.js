@@ -4,7 +4,6 @@ const fs = require("fs");
 
 const app = express();
 const port = process.env.PORT || 8080;
-// const mainDir = app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
