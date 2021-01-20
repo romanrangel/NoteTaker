@@ -4,15 +4,15 @@ const fs = require("fs");
 
 const app = express();
 const port = process.env.PORT || 8080;
-// const mainDir = path.join(__dirname, "/public");
+// const mainDir = app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-app.get("/notes", function(req, res) {
-    res.sendFile(path.join(_dirname, "./public/notes.html"));
-});
+app.get("/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
+  });
 
 app.get("/api/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "/db/db.json"));
@@ -60,5 +60,3 @@ app.delete("/api/notes/:id", function(req, res) {
 app.listen(port, function() {
     console.log(`Now listening to port ${port}. Enjoy your stay!`);
 })
-
-console.log(_dirname);
